@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<!-- Uses jinja if to keep both the create and edit functionality in one HTML. Based on the button clicked in events or the create event button it will be linked to either the edit page which is in the if or the create which is in the else-->
+<!--Froms would not work with SQL functionality setting an if statements with their own values to pull down later in one singular from solved this issue-->
+{% if error %}
+<h4 style="color: red">{{ error }}</h4>
+{% endif %}
+
+
+
+{% if event %}
+    {% set e_name = event['name'] %}
+    {% set e_date = event['date'] %}
+    {% set e_host = event['host'] %}
+    {% set e_description = event['description'] %}
+    <h2>Edit event: {{ e_name }}</h2>
+{% else %}
+    {% set e_name = '' %}
+    {% set e_date = '' %}
+    {% set e_host = '' %}
+    {% set e_description = '' %}
+    <h2>Create a new event</h2>
+{% endif %}
+<form method="POST" name="edit_event" class="container">
+    <div class="row my-2">
+        <div class="col-md-2 text-nowrap text-end">
+            <label for="name">Event Name:</label>
+        </div>
+        <div class="col">
+            <input type="text" id="name" name="name" size="64" value="{{ e_name }}" />
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-2 text-end">
+            <label for="date">Date:</label>
+        </div>
+        <div class="col">
+            <input type="date" id="date" name="date" value="{{ e_date }}" />
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-2 text-end">
+            <label for="host">Host:</label>
+        </div>
+        <div class="col">
+            <input type="text" id="host" name="host" size="64" value="{{ e_host }}" />
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-2 text-end">
+            <label for="host">Description:</label>
+        </div>
+        <div class="col">
+            <textarea id="description" name="description" cols="64" rows="5">{{ e_description }}</textarea>
+        </div>
+    </div>
+    <div class="my-2 text-center">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <input type="reset" value="Reset" class="btn btn-secondary" />
+    </div>
+</form>
+{% endblock %}

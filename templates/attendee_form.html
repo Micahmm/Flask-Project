@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--Uses if statement to set variables to dataabse names in order to be called down later in the form and goes through else if no attendee exists-->
+{% if attendee %}
+    {% set name = attendee['name'] %}
+    {% set email = attendee['email'] %}
+    {% set comment = attendee['comment'] %}
+    {% set event = event['name'] %}
+    <h2>Edit info for {{ name }}: {{ event }}</h2>
+{% else %}
+    {% set name = '' %}
+    {% set email = '' %}
+    {% set comment = '' %}
+    {% set event = '' %}
+    <h2>Add an attendee to {{ event }}</h2>
+{% endif %}  
+
+<form method="POST" name="add_attendee" class="container">
+    <div class="row my-2">
+        <div class="col-md-2 text-nowrap text-end">
+            <label for="name">Name:</label>
+        </div>
+        <div class="col">
+            <input type="text" id="name" name="name" size="64" value="{{ name }}" />
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-2 text-end">
+            <label for="date">Email</label>
+        </div>
+        <div class="col">
+            <input type="email" id="email" name="email" value="{{ email }}" />
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-2 text-end">
+            <label for="host">Comment:</label>
+        </div>
+        <div class="col">
+            <textarea id="comment" name="comment" cols="64" rows="10">{{ comment }}</textarea>
+        </div>
+    </div>
+    <div class="my-2 text-center">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <input type="reset" value="Reset" class="btn btn-secondary" />
+    </div>
+</form>
+
+{% endblock %}

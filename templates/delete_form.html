@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Delete{% endblock %}
+{% block content %}
+<!-- Uses a form to display the data of the selected data, then via a button the delete function is called and the event is deleted-->
+<form method="POST">
+    <h1>Confirm Delete?</h1>
+    <div>
+        <h2>{{event['name']}}</h2>
+        <p>
+        <h5>Date:</h5>
+            {{event['date']}}
+        <h5>Host:</h5>
+            {{event['host']}}
+        <h5>Description:</h5>
+            {{event['description']}}
+        </p>
+    </div>
+    <a href="{{url_for('list_events')}}">
+        <button type="submit">Delete Event</button>
+    </a>
+</form>
+<div>
+    <a href="{{url_for('events',event_id = event_id)}}">
+        <button type = "button">Go back</button>
+    </a>
+</div>
+{% endblock %}

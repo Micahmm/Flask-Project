@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<div class ="text-center">
+<img src="static/images/logo.webp" alt width="250">
+<h1 class = "px-4 py-5 my-5 display-5 fw-bold">B.There</h1>
+<p>B.There is a simple but friendly event registration app!</p>
+<a href="{{url_for('events',event_id=event_id)}}"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">See Events</button></a>
+
+</div>
+
+{% endblock %}

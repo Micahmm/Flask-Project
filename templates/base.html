@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--Base sytyling and tabs that carry over across all other templates-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{%endblock%}</title>
+       <!-- CSS Styles -->
+   <link rel="shortcut icon" href="{{url_for('static', filename='images/logo.webp')}}">
+   <!-- custom styles -->
+   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+</head>
+<body class="d-flex flex-column h-100">  
+    <header>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{url_for('index')}}">B.There</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('events',event_id=event_id)}}">Events</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="flex-shrink-0">
+        <div class="container">
+ 
+   {% block content %}{% endblock %}
+        </div>
+    </main>
+   <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">B.There - an I211 Flask Project &copy; 2021</span>
+    </div>
+    </footer>
+   <!-- JavaScript -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>
